@@ -1,6 +1,18 @@
 package de.myscipper.codeOfColor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CodeOfColor {
+
+    private final List<String> keywords;
+
+    public CodeOfColor() {
+        keywords = new ArrayList<>();
+        keywords.add("keyword");
+        keywords.add("another-keyword");
+    }
+
     private static String surroundString(String input, String doubleQuote) {
         String output;
         int openingString = input.indexOf(doubleQuote);
@@ -18,8 +30,10 @@ public class CodeOfColor {
 
     public String colorize(String input) {
         String output = input;
-        if (input.contains("keyword")) {
-            output = input.replace("keyword", "(kw)keyword(/kw)");
+        for (String keyword : keywords) {
+            if (input.contains(keyword)) {
+                output = input.replace(keyword, "(kw)" + keyword + "(/kw)");
+            }
         }
         String doubleQuote = "\"";
         String singleQuote = "'";

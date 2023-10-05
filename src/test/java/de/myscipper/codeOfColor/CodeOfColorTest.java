@@ -32,6 +32,20 @@ public class CodeOfColorTest {
     }
 
     @Test
+    public void should_surround_another_keyword() {
+        String colorizedCode = codeOfColor.colorize("normal text with another-keyword inside");
+
+        assertEquals("normal text with (kw)another-keyword(/kw) inside", colorizedCode);
+    }
+
+    @Test
+    public void should_surround_two_keywords() {
+        String colorizedCode = codeOfColor.colorize("normal text with a keyword and a another-keyword inside");
+
+        assertEquals("normal text with a (kw)keyword(/kw) and a (kw)another-keyword(/kw) inside", colorizedCode);
+    }
+
+    @Test
     public void should_surround_double_quoted_string() {
         String colorizedCode = codeOfColor.colorize("normal text with \"string\" inside");
 
