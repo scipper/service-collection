@@ -3,15 +3,17 @@ package de.myscipper.codeOfColor;
 public class CodeOfColor {
 
     private final Keywords keywords;
+    private final KeywordTags keywordTags;
 
-    public CodeOfColor(Keywords keywords) {
+    public CodeOfColor(Keywords keywords, KeywordTags keywordTags) {
         this.keywords = keywords;
+        this.keywordTags = keywordTags;
     }
 
-    private static String surroundString(String input, String doubleQuote) {
+    private String surroundString(String input, String quotes) {
         String output;
-        int openingString = input.indexOf(doubleQuote);
-        int closingString = input.indexOf(doubleQuote, openingString + 1);
+        int openingString = input.indexOf(quotes);
+        int closingString = input.indexOf(quotes, openingString + 1);
         output = input.substring(0, openingString);
         String openStringTag = "(string)";
         String closeStringTag = "(/string)";
@@ -28,7 +30,7 @@ public class CodeOfColor {
         for (String keyword : keywords.getKeywords()) {
             String wrappedKeyword = " " + keyword + " ";
             if (input.contains(wrappedKeyword)) {
-                output = output.replace(wrappedKeyword, " " + keywords.getOpening() + keyword + keywords.getClosing() + " ");
+                output = output.replace(wrappedKeyword, " " + keywordTags.getOpening() + keyword + keywordTags.getClosing() + " ");
             }
         }
         String doubleQuote = "\"";

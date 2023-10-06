@@ -14,7 +14,7 @@ public class CodeOfColorTest {
 
     @BeforeEach
     void setUp() {
-        codeOfColor = new CodeOfColor(new MockKeywords());
+        codeOfColor = new CodeOfColor(new MockKeywords(), new MockKeywordTags());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class CodeOfColorTest {
 
     @Test
     public void should_use_different_tags_to_surround_keyword() {
-        codeOfColor = new CodeOfColor(new DifferentKeywords());
+        codeOfColor = new CodeOfColor(new MockKeywords(), new DifferentKeywordTags());
         String colorizedCode = codeOfColor.colorize("normal text with keyword inside");
 
         assertEquals("normal text with <kw>keyword</kw> inside", colorizedCode);
