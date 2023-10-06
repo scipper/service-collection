@@ -31,8 +31,9 @@ public class CodeOfColor {
     public String colorize(String input) {
         String output = input;
         for (String keyword : keywords) {
-            if (input.contains(keyword)) {
-                output = input.replace(keyword, "(kw)" + keyword + "(/kw)");
+            String wrappedKeyword = " " + keyword + " ";
+            if (input.contains(wrappedKeyword)) {
+                output = output.replace(wrappedKeyword, " (kw)" + keyword + "(/kw) ");
             }
         }
         String doubleQuote = "\"";
