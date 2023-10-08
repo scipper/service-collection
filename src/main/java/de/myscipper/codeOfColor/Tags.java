@@ -1,6 +1,6 @@
 package de.myscipper.codeOfColor;
 
-public interface KeywordTags {
+public interface Tags {
     String getOpening();
 
     String getClosing();

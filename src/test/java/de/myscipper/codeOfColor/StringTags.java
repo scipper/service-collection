@@ -1,13 +1,13 @@
 package de.myscipper.codeOfColor;
 
-public class DifferentKeywordTags implements Tags {
+public class StringTags implements Tags {
     @Override
     public String getOpening() {
-        return "<kw>";
+        return "(string)";
     }
 
     @Override
     public String getClosing() {
-        return "</kw>";
+        return "(/string)";
     }
 }

@@ -3,25 +3,34 @@ package de.myscipper.codeOfColor;
 public class CodeOfColor {
 
     private final Keywords keywords;
-    private final KeywordTags keywordTags;
+    private final Tags tags;
+    private final Tags stringTags;
 
-    public CodeOfColor(Keywords keywords, KeywordTags keywordTags) {
+    public CodeOfColor(Keywords keywords, Tags tags, Tags stringTags) {
         this.keywords = keywords;
-        this.keywordTags = keywordTags;
+        this.tags = tags;
+        this.stringTags = stringTags;
     }
 
     private String surroundString(String input, String quotes) {
-        String output;
+        return replaceQuotes(input, quotes);
+    }
+
+    private String replaceQuotes(String input, String quotes) {
         int openingString = input.indexOf(quotes);
         int closingString = input.indexOf(quotes, openingString + 1);
-        output = input.substring(0, openingString);
-        String openStringTag = "(string)";
-        String closeStringTag = "(/string)";
-        output += openStringTag;
+
+        if (openingString == -1 || closingString == -1) {
+            return input;
+        }
+
+        String output = input.substring(0, openingString);
+        output += stringTags.getOpening();
         output += input.substring(openingString, closingString + 1);
-        output += closeStringTag;
-        output += input.substring(closingString + 1);
-        System.out.println(output);
+        output += stringTags.getClosing();
+
+        output += replaceQuotes(input.substring(closingString + 1), quotes);
+
         return output;
     }
 
@@ -30,7 +39,7 @@ public class CodeOfColor {
         for (String keyword : keywords.getKeywords()) {
             String wrappedKeyword = " " + keyword + " ";
             if (input.contains(wrappedKeyword)) {
-                output = output.replace(wrappedKeyword, " " + keywordTags.getOpening() + keyword + keywordTags.getClosing() + " ");
+                output = output.replace(wrappedKeyword, " " + tags.getOpening() + keyword + tags.getClosing() + " ");
             }
         }
         String doubleQuote = "\"";

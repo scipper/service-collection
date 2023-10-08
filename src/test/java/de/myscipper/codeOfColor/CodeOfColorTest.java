@@ -14,7 +14,7 @@ public class CodeOfColorTest {
 
     @BeforeEach
     void setUp() {
-        codeOfColor = new CodeOfColor(new MockKeywords(), new MockKeywordTags());
+        codeOfColor = new CodeOfColor(new MockKeywords(), new KeywordTags(), new StringTags());
     }
 
     @Test
@@ -60,8 +60,24 @@ public class CodeOfColorTest {
     }
 
     @Test
+    public void should_surround_two_strings() {
+        String colorizedCode = codeOfColor.colorize("normal text with \"string\" and \"another string\" inside");
+
+        assertEquals("normal text with (string)\"string\"(/string) and (string)\"another string\"(/string) inside", colorizedCode);
+    }
+
+    @Test
+    public void should_use_different_tags_to_surround_string() {
+        codeOfColor = new CodeOfColor(new MockKeywords(), new KeywordTags(), new DifferentStringTags());
+
+        String colorizedCode = codeOfColor.colorize("normal text with 'string' inside");
+
+        assertEquals("normal text with <string>'string'</string> inside", colorizedCode);
+    }
+
+    @Test
     public void should_use_different_tags_to_surround_keyword() {
-        codeOfColor = new CodeOfColor(new MockKeywords(), new DifferentKeywordTags());
+        codeOfColor = new CodeOfColor(new MockKeywords(), new DifferentKeywordTags(), new StringTags());
         String colorizedCode = codeOfColor.colorize("normal text with keyword inside");
 
         assertEquals("normal text with <kw>keyword</kw> inside", colorizedCode);

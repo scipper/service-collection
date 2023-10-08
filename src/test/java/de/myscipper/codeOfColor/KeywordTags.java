@@ -1,6 +1,6 @@
 package de.myscipper.codeOfColor;
 
-public class MockKeywordTags implements KeywordTags {
+public class KeywordTags implements Tags {
 
     public String getOpening() {
         return "(kw)";
