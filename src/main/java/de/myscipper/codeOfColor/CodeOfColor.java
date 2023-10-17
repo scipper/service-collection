@@ -12,8 +12,37 @@ public class CodeOfColor {
         this.stringTags = stringTags;
     }
 
-    private String surroundString(String input, String quotes) {
-        return replaceQuotes(input, quotes);
+    public String colorize(String input) {
+        String output = input;
+
+        output = surroundStrings(output);
+        output = surroundKeywords(output);
+
+        return output;
+    }
+
+    private String surroundKeywords(String input) {
+        String output = input;
+        for (String keyword : keywords.getKeywords()) {
+            String wrappedKeyword = " " + keyword + " ";
+            if (input.contains(wrappedKeyword)) {
+                output = output.replace(wrappedKeyword, " " + tags.getOpening() + keyword + tags.getClosing() + " ");
+            }
+        }
+        return output;
+    }
+
+    private String surroundStrings(String input) {
+        String output = input;
+        String doubleQuote = "\"";
+        String singleQuote = "'";
+        if (input.contains(doubleQuote)) {
+            output = replaceQuotes(input, doubleQuote);
+        }
+        if (input.contains(singleQuote)) {
+            output = replaceQuotes(input, singleQuote);
+        }
+        return output;
     }
 
     private String replaceQuotes(String input, String quotes) {
@@ -31,25 +60,6 @@ public class CodeOfColor {
 
         output += replaceQuotes(input.substring(closingString + 1), quotes);
 
-        return output;
-    }
-
-    public String colorize(String input) {
-        String output = input;
-        for (String keyword : keywords.getKeywords()) {
-            String wrappedKeyword = " " + keyword + " ";
-            if (input.contains(wrappedKeyword)) {
-                output = output.replace(wrappedKeyword, " " + tags.getOpening() + keyword + tags.getClosing() + " ");
-            }
-        }
-        String doubleQuote = "\"";
-        String singleQuote = "'";
-        if (input.contains(doubleQuote)) {
-            output = surroundString(input, doubleQuote);
-        }
-        if (input.contains(singleQuote)) {
-            output = surroundString(input, singleQuote);
-        }
         return output;
     }
 }
