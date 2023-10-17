@@ -11,10 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CodeOfColorTest {
 
     private CodeOfColor codeOfColor;
+    private StringColorizer stringColorizer;
+    private KeywordColorizer keywordColorizer;
 
     @BeforeEach
     void setUp() {
-        codeOfColor = new CodeOfColor(new MockKeywords(), new KeywordTags(), new StringTags());
+        stringColorizer = new StringColorizer(new StringTags());
+        keywordColorizer = new KeywordColorizer(new MockKeywords(), new KeywordTags());
+        codeOfColor = new CodeOfColor(stringColorizer, keywordColorizer);
     }
 
     @Test
@@ -68,7 +72,8 @@ public class CodeOfColorTest {
 
     @Test
     public void should_use_different_tags_to_surround_string() {
-        codeOfColor = new CodeOfColor(new MockKeywords(), new KeywordTags(), new DifferentStringTags());
+        StringColorizer stringColorizer = new StringColorizer(new DifferentStringTags());
+        codeOfColor = new CodeOfColor(stringColorizer, keywordColorizer);
 
         String colorizedCode = codeOfColor.colorize("normal text with 'string' inside");
 
@@ -77,7 +82,9 @@ public class CodeOfColorTest {
 
     @Test
     public void should_use_different_tags_to_surround_keyword() {
-        codeOfColor = new CodeOfColor(new MockKeywords(), new DifferentKeywordTags(), new StringTags());
+        KeywordColorizer keywordColorizer = new KeywordColorizer(new MockKeywords(), new DifferentKeywordTags());
+        codeOfColor = new CodeOfColor(stringColorizer, keywordColorizer);
+
         String colorizedCode = codeOfColor.colorize("normal text with keyword inside");
 
         assertEquals("normal text with <kw>keyword</kw> inside", colorizedCode);
