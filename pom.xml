@@ -29,4 +29,28 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>de.myscipper.codeOfColor.JavaCliExample</mainClass>
+                    <arguments>
+                        <argument>This is a text "with a string" and more text</argument>
+                        <argument>Here are some keywords: public, void</argument>
+                        <argument>Insert some &lt;strong&gt;markup&lt;/strong&gt; into the text</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <!-- needed to execute junit tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
