@@ -1,4 +1,7 @@
-package de.myscipper.codeOfColor;
+package de.myscipper.codeOfColor.string;
+
+import de.myscipper.codeOfColor.Colorizer;
+import de.myscipper.codeOfColor.Tags;
 
 public class StringColorizer implements Colorizer {
     private final Tags tags;

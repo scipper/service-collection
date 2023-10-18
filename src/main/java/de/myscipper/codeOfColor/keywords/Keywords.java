@@ -1,4 +1,4 @@
-package de.myscipper.codeOfColor;
+package de.myscipper.codeOfColor.keywords;
 
 import java.util.List;
 

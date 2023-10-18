@@ -1,4 +1,6 @@
-package de.myscipper.codeOfColor;
+package de.myscipper.codeOfColor.string;
+
+import de.myscipper.codeOfColor.Tags;
 
 public class DifferentStringTags implements Tags {
     @Override

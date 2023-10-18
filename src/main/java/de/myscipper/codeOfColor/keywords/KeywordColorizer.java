@@ -1,4 +1,9 @@
-package de.myscipper.codeOfColor;
+package de.myscipper.codeOfColor.keywords;
+
+import de.myscipper.codeOfColor.Colorizer;
+import de.myscipper.codeOfColor.Tags;
+
+import java.util.regex.Pattern;
 
 public class KeywordColorizer implements Colorizer {
     private final Keywords keywords;
@@ -13,9 +18,9 @@ public class KeywordColorizer implements Colorizer {
     public String surround(String input) {
         String output = input;
         for (String keyword : keywords.getKeywords()) {
-            String wrappedKeyword = " " + keyword + " ";
-            if (input.contains(wrappedKeyword)) {
-                output = output.replace(wrappedKeyword, " " + tags.getOpening() + keyword + tags.getClosing() + " ");
+            String regex = "\\b(" + keyword + ")\\b";
+            if (Pattern.compile(regex).matcher(input).find()) {
+                output = output.replaceAll(regex, tags.getOpening() + "$1" + tags.getClosing());
             }
         }
         return output;

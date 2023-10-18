@@ -1,6 +1,8 @@
-package de.myscipper.codeOfColor;
+package de.myscipper.codeOfColor.string;
 
-public class StringTags implements Tags {
+import de.myscipper.codeOfColor.Tags;
+
+public class DefaultStringTags implements Tags {
     @Override
     public String getOpening() {
         return "(string)";

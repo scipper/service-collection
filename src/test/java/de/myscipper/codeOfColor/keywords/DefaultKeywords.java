@@ -1,16 +1,16 @@
-package de.myscipper.codeOfColor;
+package de.myscipper.codeOfColor.keywords;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MockKeywords implements Keywords {
+public class DefaultKeywords implements Keywords {
 
     private final List<String> keywords;
 
-    public MockKeywords() {
+    public DefaultKeywords() {
         keywords = new ArrayList<>();
         keywords.add("keyword");
-        keywords.add("another-keyword");
+        keywords.add("anotherkeyword");
     }
 
     @Override
