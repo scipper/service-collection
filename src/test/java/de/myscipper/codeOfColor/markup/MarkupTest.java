@@ -1,6 +1,7 @@
 package de.myscipper.codeOfColor.markup;
 
 import de.myscipper.codeOfColor.CodeOfColor;
+import de.myscipper.codeOfColor.PatternColorizer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -15,7 +16,7 @@ public class MarkupTest {
 
     @BeforeEach
     void setUp() {
-        codeOfColor = new CodeOfColor(new MarkupColorizer(new DefaultMarkupTags(), new DefaultPattern()));
+        codeOfColor = new CodeOfColor(new PatternColorizer(new DefaultPattern(), new DefaultMarkupTags()));
     }
 
     @Test
@@ -27,7 +28,7 @@ public class MarkupTest {
 
     @Test
     public void should_surround_escaped_markup() {
-        codeOfColor = new CodeOfColor(new MarkupColorizer(new DefaultMarkupTags(), new EscapePattern()));
+        codeOfColor = new CodeOfColor(new PatternColorizer(new EscapePattern(), new DefaultMarkupTags()));
 
         String colorizedCode = codeOfColor.colorize("here is &lt;h1&gt;marked up&lt;/h1&gt; text");
 
@@ -36,7 +37,7 @@ public class MarkupTest {
 
     @Test
     public void should_surround_with_different_tags() {
-        codeOfColor = new CodeOfColor(new MarkupColorizer(new DifferentMarkupTags(), new DefaultPattern()));
+        codeOfColor = new CodeOfColor(new PatternColorizer(new DefaultPattern(), new DifferentMarkupTags()));
 
         String colorizedCode = codeOfColor.colorize("here is <h1>marked up</h1> text");
 

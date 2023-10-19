@@ -2,7 +2,6 @@ package de.myscipper.codeOfColor;
 
 import de.myscipper.codeOfColor.keywords.KeywordColorizer;
 import de.myscipper.codeOfColor.keywords.Keywords;
-import de.myscipper.codeOfColor.markup.MarkupColorizer;
 import de.myscipper.codeOfColor.pattern.StringPattern;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ public class JavaCliExample {
     public static void main(String[] args) {
         PatternColorizer patternColorizer = new PatternColorizer(new StringPattern(), new JavaCliStringTags());
         KeywordColorizer keywordColorizer = new KeywordColorizer(new JavaCliKeywords(), new JavaCliKeywordTags());
-        MarkupColorizer markupColorizer = new MarkupColorizer(new MarkupTags(), new HtmlPattern());
+        PatternColorizer markupColorizer = new PatternColorizer(new HtmlPattern(), new MarkupTags());
 
         CodeOfColor codeOfColor = new CodeOfColor(patternColorizer, keywordColorizer, markupColorizer);
 
