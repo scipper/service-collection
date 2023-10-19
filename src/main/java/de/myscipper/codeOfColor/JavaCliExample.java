@@ -3,8 +3,7 @@ package de.myscipper.codeOfColor;
 import de.myscipper.codeOfColor.keywords.KeywordColorizer;
 import de.myscipper.codeOfColor.keywords.Keywords;
 import de.myscipper.codeOfColor.markup.MarkupColorizer;
-import de.myscipper.codeOfColor.markup.Pattern;
-import de.myscipper.codeOfColor.string.StringColorizer;
+import de.myscipper.codeOfColor.pattern.StringPattern;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +11,11 @@ import java.util.List;
 public class JavaCliExample {
 
     public static void main(String[] args) {
-        StringColorizer stringColorizer = new StringColorizer(new JavaCliStringTags());
+        PatternColorizer patternColorizer = new PatternColorizer(new StringPattern(), new JavaCliStringTags());
         KeywordColorizer keywordColorizer = new KeywordColorizer(new JavaCliKeywords(), new JavaCliKeywordTags());
         MarkupColorizer markupColorizer = new MarkupColorizer(new MarkupTags(), new HtmlPattern());
 
-        CodeOfColor codeOfColor = new CodeOfColor(stringColorizer, keywordColorizer, markupColorizer);
+        CodeOfColor codeOfColor = new CodeOfColor(patternColorizer, keywordColorizer, markupColorizer);
 
         for (String arg : args) {
             String colorized = codeOfColor.colorize(arg);

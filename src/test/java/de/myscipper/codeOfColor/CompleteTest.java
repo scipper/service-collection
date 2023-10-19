@@ -6,8 +6,8 @@ import de.myscipper.codeOfColor.keywords.KeywordColorizer;
 import de.myscipper.codeOfColor.markup.DefaultMarkupTags;
 import de.myscipper.codeOfColor.markup.DefaultPattern;
 import de.myscipper.codeOfColor.markup.MarkupColorizer;
+import de.myscipper.codeOfColor.pattern.StringPattern;
 import de.myscipper.codeOfColor.string.DefaultStringTags;
-import de.myscipper.codeOfColor.string.StringColorizer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -23,9 +23,9 @@ public class CompleteTest {
     @BeforeEach
     void setUp() {
         MarkupColorizer markupColorizer = new MarkupColorizer(new DefaultMarkupTags(), new DefaultPattern());
-        StringColorizer stringColorizer = new StringColorizer(new DefaultStringTags());
+        PatternColorizer patternColorizer = new PatternColorizer(new StringPattern(), new DefaultStringTags());
         KeywordColorizer keywordColorizer = new KeywordColorizer(new DefaultKeywords(), new DefaultKeywordTags());
-        codeOfColor = new CodeOfColor(keywordColorizer, stringColorizer, markupColorizer);
+        codeOfColor = new CodeOfColor(keywordColorizer, patternColorizer, markupColorizer);
     }
 
     @Test

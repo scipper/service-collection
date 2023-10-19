@@ -1,6 +1,7 @@
 package de.myscipper.codeOfColor.markup;
 
 import de.myscipper.codeOfColor.Colorizer;
+import de.myscipper.codeOfColor.Pattern;
 import de.myscipper.codeOfColor.Tags;
 
 public class MarkupColorizer implements Colorizer {

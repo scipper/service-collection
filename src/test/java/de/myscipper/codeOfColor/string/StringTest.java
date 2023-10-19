@@ -1,6 +1,8 @@
 package de.myscipper.codeOfColor.string;
 
 import de.myscipper.codeOfColor.CodeOfColor;
+import de.myscipper.codeOfColor.PatternColorizer;
+import de.myscipper.codeOfColor.pattern.StringPattern;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -15,8 +17,8 @@ public class StringTest {
 
     @BeforeEach
     void setUp() {
-        StringColorizer stringColorizer = new StringColorizer(new DefaultStringTags());
-        codeOfColor = new CodeOfColor(stringColorizer);
+        PatternColorizer patternColorizer = new PatternColorizer(new StringPattern(), new DefaultStringTags());
+        codeOfColor = new CodeOfColor(patternColorizer);
     }
 
     @Test
@@ -49,8 +51,8 @@ public class StringTest {
 
     @Test
     public void should_use_different_tags_to_surround_string() {
-        StringColorizer stringColorizer = new StringColorizer(new DifferentStringTags());
-        codeOfColor = new CodeOfColor(stringColorizer);
+        PatternColorizer patternColorizer = new PatternColorizer(new StringPattern(), new DifferentStringTags());
+        codeOfColor = new CodeOfColor(patternColorizer);
 
         String colorizedCode = codeOfColor.colorize("normal text with 'string' inside");
 
