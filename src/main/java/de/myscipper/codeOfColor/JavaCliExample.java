@@ -2,6 +2,7 @@ package de.myscipper.codeOfColor;
 
 import de.myscipper.codeOfColor.keywords.KeywordColorizer;
 import de.myscipper.codeOfColor.keywords.Keywords;
+import de.myscipper.codeOfColor.pattern.HtmlPattern;
 import de.myscipper.codeOfColor.pattern.StringPattern;
 
 import java.util.ArrayList;
@@ -82,10 +83,4 @@ public class JavaCliExample {
         }
     }
 
-    private static class HtmlPattern implements Pattern {
-        @Override
-        public String getPattern() {
-            return "(<.*?>)";
-        }
-    }
 }
