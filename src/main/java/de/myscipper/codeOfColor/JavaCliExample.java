@@ -7,11 +7,11 @@ import de.myscipper.codeOfColor.pattern.StringPattern;
 public class JavaCliExample {
 
     public static void main(String[] args) {
-        PatternColorizer patternColorizer = new PatternColorizer(new StringPattern(), new JavaCliStringTags());
+        PatternColorizer stringColorizer = new PatternColorizer(new StringPattern(), new JavaCliStringTags());
         PatternColorizer keywordColorizer = new PatternColorizer(new JavaCliKeywordPattern(), new JavaCliKeywordTags());
         PatternColorizer markupColorizer = new PatternColorizer(new HtmlPattern(), new MarkupTags());
 
-        CodeOfColor codeOfColor = new CodeOfColor(patternColorizer, keywordColorizer, markupColorizer);
+        CodeOfColor codeOfColor = new CodeOfColor(stringColorizer, keywordColorizer, markupColorizer);
 
         for (String arg : args) {
             String colorized = codeOfColor.colorize(arg);
