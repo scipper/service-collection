@@ -1,6 +1,7 @@
 package de.myscipper.codeOfColor.keywords;
 
 import de.myscipper.codeOfColor.CodeOfColor;
+import de.myscipper.codeOfColor.PatternColorizer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -15,7 +16,7 @@ public class KeywordTest {
 
     @BeforeEach
     void setUp() {
-        KeywordColorizer keywordColorizer = new KeywordColorizer(new DefaultKeywords(), new DefaultKeywordTags());
+        PatternColorizer keywordColorizer = new PatternColorizer(new DefaultKeywordPattern(), new DefaultKeywordTags());
         codeOfColor = new CodeOfColor(keywordColorizer);
     }
 
@@ -42,7 +43,7 @@ public class KeywordTest {
 
     @Test
     public void should_use_different_tags_to_surround_keyword() {
-        KeywordColorizer keywordColorizer = new KeywordColorizer(new DefaultKeywords(), new DifferentKeywordTags());
+        PatternColorizer keywordColorizer = new PatternColorizer(new DefaultKeywordPattern(), new DifferentKeywordTags());
         codeOfColor = new CodeOfColor(keywordColorizer);
 
         String colorizedCode = codeOfColor.colorize("normal text with keyword inside");

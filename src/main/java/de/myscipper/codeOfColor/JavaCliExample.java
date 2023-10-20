@@ -1,18 +1,14 @@
 package de.myscipper.codeOfColor;
 
-import de.myscipper.codeOfColor.keywords.KeywordColorizer;
-import de.myscipper.codeOfColor.keywords.Keywords;
 import de.myscipper.codeOfColor.pattern.HtmlPattern;
 import de.myscipper.codeOfColor.pattern.StringPattern;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class JavaCliExample {
 
     public static void main(String[] args) {
         PatternColorizer patternColorizer = new PatternColorizer(new StringPattern(), new JavaCliStringTags());
-        KeywordColorizer keywordColorizer = new KeywordColorizer(new JavaCliKeywords(), new JavaCliKeywordTags());
+        PatternColorizer keywordColorizer = new PatternColorizer(new JavaCliKeywordPattern(), new JavaCliKeywordTags());
         PatternColorizer markupColorizer = new PatternColorizer(new HtmlPattern(), new MarkupTags());
 
         CodeOfColor codeOfColor = new CodeOfColor(patternColorizer, keywordColorizer, markupColorizer);
@@ -48,14 +44,17 @@ public class JavaCliExample {
         public static final String ANSI_WHITE = "\u001B[37m";
     }
 
-    private static class JavaCliKeywords implements Keywords {
-        @Override
-        public List<String> getKeywords() {
-            ArrayList<String> keywords = new ArrayList<>();
-            keywords.add("public");
-            keywords.add("void");
+    private static class JavaCliKeywordPattern implements Pattern {
+        private final String pattern;
 
-            return keywords;
+        public JavaCliKeywordPattern() {
+            String[] keywords = {"public", "void"};
+            pattern = "\\b(" + String.join("|", keywords) + ")\\b";
+        }
+
+        @Override
+        public String getPattern() {
+            return pattern;
         }
     }
 
